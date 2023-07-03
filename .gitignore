@@ -1,0 +1,7 @@
+.idea
+*.pyc
+*~
+/vnv_dj
+__pycache__
+todoDB
+mysettings.py
