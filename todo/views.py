@@ -21,3 +21,15 @@ def create(request):
     else:
         form = TodoForm()
     return render(request, 'todo/create.html', {'form':form})
+
+def edit(request, pk):
+    todo = Todo.objects.get(id=pk)
+    if request.method == "POST":
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.save()
+            return redirect('detail')
+    else:
+        form = TodoForm(instance=todo)
+    return render(request, 'todo/edit.html', {'form':form})
